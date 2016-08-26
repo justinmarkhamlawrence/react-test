@@ -6,30 +6,29 @@ var Gallery = require('../gallery');
 
 describe('Gallery component', function() {
     it('Renders the images and descriptions',  function() {
-        var url = "http://www.example.com/image.png";
-        var description = "Example description";
-        var images = [url, url, url];
+
+        var imagesSeed = [
+          {url: 'img.com', description: 'cool link'},
+          {url: 'png.com', description: 'cooler link'}
+        ];
 
         //container has correct className
         //correct number of images has rendered
         //each image has correct props set
 
         var renderer = TestUtils.createRenderer();
-        renderer.render(<Gallery images={images} />);
+        renderer.render(<Gallery images={imagesSeed} />);
         var result = renderer.getRenderOutput();
         console.log(result.props.children[0].props);
         result.props.className.should.equal('gallery');
         result.type.should.equal('div');
         //
-        var image = result.props.children;
-        image.length.should.equal(images.length);
-        image[0].props.should.equal(2);
-        // img.type.should.equal('img');
-        // img.props.src.should.equal(url);
-        // img.props.alt.should.equal(description);
-        //
-        // var p = result.props.children[1];
-        // p.type.should.equal('p');
-        // p.props.children.should.equal(description);
+        var images = result.props.children;
+        images.length.should.equal(imagesSeed.length);
+        images[0].props.url.should.equal('img.com');
+        images[0].props.description.should.equal('cool link');
+        images[1].props.url.should.equal('png.com');
+        images[1].props.description.should.equal('cooler link');
+        
     });
 });

@@ -12,4 +12,7 @@ var Gallery = function(props) {
     );
 };
 
+// <Gallery images={[{url: '.com', description: 'cool image'}]} />
+// <Gallery images={[..]}
+
 module.exports = Gallery;
